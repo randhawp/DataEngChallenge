@@ -15,4 +15,7 @@ There are 3 parts to the solution as required
 
 
 Further Work
-More analysis on the data can be done.  
+More analysis on the data can be done like 
+(a) identifying roaming devices.
+(b) identifying 2 or more devices that hang around together
+etc
