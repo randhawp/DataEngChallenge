@@ -1,0 +1,31 @@
+Answer for Q2 on geo clustering
+
+The clusting was done at city level. There is a ficticious device sending data with lat,lng 0,0 but the top 5 places come up in Canada
+In the python code there is provision to cluster at room or building level etc.
+The column 3 was manually added for cross checking
+
++-------+--------------+
+|GeoHash|UniqueVisitors|
++-------+--------------+
+|   7zzz|          4339| No Location data
+|   dpz8|          4300| downton Toronto
+|   dpz2|          3652| westend-Person-brampton-mississauga
+|   dpz9|          2520| markham-richmond hill -pickering
+|   f25d|          1928| montreal downtown
+|   c3nf|          1812| Calgary
+|   dpxr|          1783| Oakville, sout-west-mississauga
+|   f244|          1739| Ottawa
+|   9vk1|          1722| North Houston, USA
+|   9vg5|          1674| North Dallas,USA
+|   9vk0|          1623| South Houston, USA
+|   dr4e|          1599| Philadelphia
+|   dn5b|          1577| N. Atlanta
+|   c3x2|          1574| Edmonton
+|   dpsc|          1565| N. Detroit
+|   dqcx|          1560| East Baltimore
+|   9vg4|          1556| South-Central Dallas
+|   dphg|          1547| Columbous
+|   dqcr|          1518| West Baltimore
+|   djgz|          1499| South Atlanta
++-------+--------------+
+only showing top 20 rows
