@@ -1,5 +1,5 @@
 V 0.0.1
-Date:  May 2016
+Date: 8 May 2016
 
 About the solution
 
@@ -18,4 +18,6 @@ Further Work
 More analysis on the data can be done like 
 (a) identifying roaming devices.
 (b) identifying 2 or more devices that hang around together
-etc
+etc.
+
+PS: Having issue writing to parquet files, the process crashes
