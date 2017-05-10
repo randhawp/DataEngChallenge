@@ -108,8 +108,8 @@ geoClusterDF.show()
 
 
 LOOKUP_SIZE=50
-dfp = geoClusterDF.toPandas()
-temppdf = dfp[:50]
+dfp = geoClusterDF.limit(LOOKUP_SIZE).toPandas() # this is a collect operation, do not want to run out of mem
+temppdf = dfp[:LOOKUP_SIZE]
 
 topNpdf = reverseLookup(temppdf,precision,LOOKUP_SIZE)
 print(topNpdf)
