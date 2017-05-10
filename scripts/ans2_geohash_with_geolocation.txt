@@ -1,0 +1,59 @@
+This is the result of running the q2_geohash.py script with the precision level set to 
+"BUILDING" i.e an area that is roughly a 153mx153m . Ignoring No, 0 it shown max concentration centered 
+around Queen St W. In v 0.0.2 the 
+
+
+
+
+   GeoHash  UniqueVisitors                            Address
+0   7zzzzzz            4339                                 50
+1   dpz8336             129              Queen St W,Toronto,CA
+2   dpz83ek             102            Gerrard St E,Toronto,CA
+3   djfq0rz              75  Shades Crest Rd,Vestavia Hills,US
+4   f25dyjf              73                     Addr not found
+5   dq21mme              70                   US-301,Benson,US
+6   f25dv90              69            Rue Vignal,Westmount,CA
+7   f25dtxu              64                     Addr not found
+8   f244mdx              62         Trans-Canada Hwy,Ottawa,CA
+9   9vkh7wd              61          Interstate 45 N,Conroe,US
+10  dpz83dt              60           Adelaide St W,Toronto,CA
+11  dpz89hx              57              Duplex Ave,Toronto,CA
+12  f25dvg0              57                     Addr not found
+13  dpz83d2              57              Queen St W,Toronto,CA
+14  dpz83eh              54           Adelaide St W,Toronto,CA
+15  dpz83du              53           Adelaide St W,Toronto,CA
+16  f241b83              53               Kanata Ave,Ottawa,CA
+17  djfmbs7              52  Riverchase Galleria,Birmingham,US
+18  dpm5wpy              52                Lane St,Sandusky,US
+19  c2b2q2n              49            W 12th Ave,Vancouver,CA
+20  dpz832h              49   Van De Water Crescent,Toronto,CA
+21  dpz839c              48              Queen St W,Toronto,CA
+22  dpz83e6              48            Gerrard St E,Toronto,CA
+23  c2b2q4w              46              Davie St,Vancouver,CA
+24  dpz83tc              46              Bloor St W,Toronto,CA
+25  djgzq3q              46            SW Nlvr,College Park,US
+26  dpz833c              46          Augusta Square,Toronto,CA
+27  f244mt7              45              Clarence St,Ottawa,CA
+28  djkvw9r              45             SW 90th Blvd,Jasper,US
+29  c2b2qdc              45             Beatty St,Vancouver,CA
+30  dpz80z9              45               Hanna Ave,Toronto,CA
+31  dpz831h              45            Iceboat Terr,Toronto,CA
+32  dpz832g              45   Van De Water Crescent,Toronto,CA
+33  dpz83j7              45             Lowther Ave,Toronto,CA
+34  c2b2prz              44         Commercial Dr,Vancouver,CA
+35  dpz836j              44              Queen St W,Toronto,CA
+36  djt54wb              44           Letitia Ave S,Douglas,US
+37  dn6m9tg              44  Korean Veterans Blvd,Nashville,US
+38  f25dvgf              44                     None,None,None
+39  f244mt6              44                     None,None,None
+40  dpz83tb              44                     None,None,None
+41  c2b2q76              43                     None,None,None
+42  c2b2mbj              43            W 13th Ave,Vancouver,CA
+43  dpz83w0              43              Bloor St W,Toronto,CA
+44  c2b2q7e              43                  None,Vancouver,CA
+45  dpz833v              43              Queen St W,Toronto,CA
+46  f244mt5              42                Lisgar St,Ottawa,CA
+47  djdxvzv              42    Carriage Brook Rd,Montgomery,US
+48  f25dvg6              42                     Addr not found
+49  f241s2v              42               Riocan Ave,Ottawa,CA
+

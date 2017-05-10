@@ -7,7 +7,7 @@ from pyspark.sql import Row
 from pyspark.sql import functions as func
 import json
 import Geohash
-
+import geocoder
 
 def getDateVal(timestamp):
     from datetime import datetime
@@ -42,6 +42,41 @@ Length	Cell width	Cell height
 12	= 37.2mm	×	18.6mm
 
 '''
+def reverseLookup(pdf,precision,sz):
+    addr = [sz]
+    for row in pdf['GeoHash']:
+        vlatlng=Geohash.decode(row)
+        lat=vlatlng[0]
+        lng=vlatlng[1]
+        if(float(lat)==0 and float(lng)==0):
+            continue
+        loc = geocoder.google([lat,lng],method='reverse')
+        if(precision =="CITY" or precision=="METRO"):
+            try:
+                addr.append(str(loc.city)+","+str(loc.country))
+            except:
+                addr.append("Addr not found")
+        if(precision == "BUILDING" or precision=="ROOM"):
+            try:
+                addr.append(str(loc.street)+","+str(loc.city)+","+str(loc.country))    
+            except:
+                addr.append("Addr not found")
+        if(precision == "CONTINENT"):
+            try:
+                addr.append(str(loc.country))    
+            except:
+                addr.append("Addr not found")
+ 
+    pdf["Address"]=addr
+        
+    return pdf
+
+
+def getLocationDetail(lat,lng):
+
+    loc = geocoder.google([lat,lng],method='reverse')
+    return loc
+
 #Create a Spark Session
 SpSession = SparkSession \
     .builder \
@@ -57,9 +92,9 @@ SpContext = SpSession.sparkContext
 
 #parallelize read into a rdd for all the gz files
 freckleRDD = SpContext.textFile("/home/ubuntu/data/location-data-sample/*.gz")
-#freckleRDD = SpContext.textFile("/home/ubuntu/data/location-data-sample/test4")
+#freckleRDD = SpContext.textFile("/home/ubuntu/data/location-data-sample/test5")
 
-precision="CITY"
+precision="BUILDING"
 #get all events for all the idfa's this is the who, when and where
 idfaGeohashRDD = freckleRDD.map(lambda x: (json.loads(x)['idfa'],getDateVal(json.loads(x)['event_time']), buildGeoHash(json.loads(x)['lat'],json.loads(x)['lng'],precision) ) )
 idfaGeoHashDF = sqlContext.createDataFrame(idfaGeohashRDD)
@@ -68,21 +103,34 @@ idfaGeoHashDF = sqlContext.createDataFrame(idfaGeohashRDD)
 
 # group by location (geohash) with precision set at RDD creation time and count the distinct idfa that visited the location at any time. No time granulatiy
 geoClusterRDD=idfaGeoHashDF.groupby('_3').agg(func.countDistinct('_1').alias('DistinctVisitorsAtLocationOnAnyDay')).collect()
-geoClusterDF = sqlContext.createDataFrame(geoClusterRDD,["GeoHash","UniqueVisitors"])
+geoClusterDF = sqlContext.createDataFrame(geoClusterRDD,["GeoHash","UniqueVisitors"]).filter("`UniqueVisitors` >= 1").orderBy('UniqueVisitors', ascending=False)
 geoClusterDF.show()
 
 
-# group by location (geohash) with precision set at RDD creation time and count the distinct idfa there at the granulaity by the hour i.e 1pm-2pm
+LOOKUP_SIZE=50
+dfp = geoClusterDF.toPandas()
+temppdf = dfp[:50]
+
+topNpdf = reverseLookup(temppdf,precision,LOOKUP_SIZE)
+print(topNpdf)
+# For each row in the column,
+
+'''
+Uncomment the next 3 lines if you want to find the clustering on an hourly basis. By default the above code does it on the whole data set
+group by location (geohash) with precision set at RDD creation time and count the distinct idfa there at the granulaity by the hour i.e 1pm-2pm
+
+'''
 #geoClusterRDD=idfaGeoHashDF.groupby('_3','_2').agg(func.countDistinct('_1').alias('DistinctVisitors')).collect()
 #geoClusterDF = sqlContext.createDataFrame(geoClusterRDD,["GeoHash","YMD-Hour","UniqueVisitors"])
 #geoClusterDF.show()
 
 
-
-
+'''
+Uncomment the next 3 lines if sql queries are to be enabled.
+'''
 #some easy sql to play with data 
-geoClusterDF.createOrReplaceTempView("geoview")
-SpSession.sql("select GeoHash, UniqueVisitors from geoview order by UniqueVisitors DESC").show()
+#geoClusterDF.createOrReplaceTempView("geoview")
+#SpSession.sql("select GeoHash, UniqueVisitors from geoview order by UniqueVisitors DESC").show()
 
 
 

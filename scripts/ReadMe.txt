@@ -1,5 +1,7 @@
+Release Notes
+
 V 0.0.1
-Date: 8 May 2016
+Date: 8 May 2017
 
 About the solution
 
@@ -14,10 +16,12 @@ There are 3 parts to the solution as required
 (c) Research - looks at trends in data ingestion which may help in elastically scaling up/down the compute resources
 
 
-Further Work
-More analysis on the data can be done like 
-(a) identifying roaming devices.
-(b) identifying 2 or more devices that hang around together
-etc.
+v 0.0.2
+Date 9 May 2017
 
-PS: Having issue writing to parquet files, the process crashes
+New Features
+a) Added automatic geocode conversion for naming location where a cluster of people are found.
+Discovers number of people in a chosen distance i.e room, building, city, metro, continenet level and gives a name to the location
+In the current version the name at larger distances is that of the closest city to the center. When room or building level is selected then the address is of street level.
+
+b) Fixed environement issues with JVM that cause crashing of process writing to parquet files
