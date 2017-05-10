@@ -1,4 +1,5 @@
 %spark.pyspark
+#the result of this script is in ans2_geohash.txt
 #Initialize SparkSession and SparkContext
 from pyspark.sql import SparkSession
 from pyspark import SparkContext

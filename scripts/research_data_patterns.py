@@ -1,4 +1,5 @@
 %spark.pyspark
+#the result of this script is in the pdf file "research on data data ingestion across the data.pdf"
 #Initialize SparkSession and SparkContext
 from pyspark.sql import SparkSession
 from pyspark import SparkContext

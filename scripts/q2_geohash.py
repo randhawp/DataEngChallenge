@@ -1,4 +1,5 @@
 %spark.pyspark
+#the result of this script is in the ans1_staticalanalysis.txt
 #Initialize SparkSession and SparkContext
 from pyspark.sql import SparkSession
 from pyspark import SparkContext
